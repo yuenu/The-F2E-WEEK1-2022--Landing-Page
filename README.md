@@ -1,4 +1,10 @@
-# React Project width vite starter
+# [The F2E](https://2022.thef2e.com/) Week1 - Landing page
+
+
+# UI
+
+[Design by EG](https://2022.thef2e.com/users/12061549261454740203)
+
 
 ## Built with
 
