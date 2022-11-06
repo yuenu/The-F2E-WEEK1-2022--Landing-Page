@@ -6,7 +6,8 @@ import Ready2 from '@/assets/images/main/ready_2.png'
 import Ready3 from '@/assets/images/main/ready_3.png'
 import LogoIcon from '@/assets/images/logo/logo.png'
 import LogoTextIcon from '@/assets/images/logo/logo_text.png'
-import UserDefaultIcon from '@/assets/images/btn/btn_user_h.png'
+import UserDefaultIcon from '@/assets/images/btn/btn_user.png'
+import UserHoverIcon from '@/assets/images/btn/btn_user_h.png'
 import UserActiveIcon from '@/assets/images/btn/btn_user_p.png'
 import OpenMenuIcon from '@/assets/images/btn/btn_burger_open.png'
 import JoinHeadIcon from '@/assets/images/btn/btn_joinHand.png'
@@ -56,6 +57,7 @@ export const Icon = {
   LogoIcon,
   LogoTextIcon,
   UserDefaultIcon,
+  UserHoverIcon,
   UserActiveIcon,
   OpenMenuIcon,
   JoinHeadIcon,

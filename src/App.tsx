@@ -2,6 +2,7 @@ import { useRef, useState } from 'react'
 import { Icon } from '@/components'
 import { useSpring, animated } from '@react-spring/web'
 import { Parallax, ParallaxLayer } from '@react-spring/parallax'
+import type { IParallax } from '@react-spring/parallax'
 
 function Header() {
   const [icon, setIcon] = useState(Icon.UserDefaultIcon)
@@ -16,8 +17,9 @@ function Header() {
             className="h-20 cursor-pointer"
             src={icon}
             alt=""
-            onMouseEnter={() => setIcon(Icon.UserActiveIcon)}
+            onMouseEnter={() => setIcon(Icon.UserHoverIcon)}
             onMouseLeave={() => setIcon(Icon.UserDefaultIcon)}
+            onClick={() => setIcon(Icon.UserActiveIcon)}
           />
         </a>
       </div>
@@ -126,28 +128,47 @@ function OtherElement() {
   )
 }
 
+function JoinCard() {
+  return (
+    <div className="flex flex-col items-center justify-center gap-1 font-bold text-primary-1">
+      <h4>前端工程師</h4>
+      <span className="flex items-center justify-center px-3 py-1 text-white rounded-full w-fit bg-primary-1">
+        <Icon.UserSVG className="w-4 h-4 stroke-white" />
+        920
+      </span>
+    </div>
+  )
+}
+
 function Content() {
   return (
     <div className="relative flex justify-center w-3/4 h-screen mx-auto">
-      <div className="relative z-10 w-[30%] mx-auto text-center h-fit top-20">
+      <div className="relative z-10 w-[35.41vw] mx-auto text-center h-fit top-[1.2vw]">
         <img className="" src={Icon.LogoTextIcon} alt="" />
         <h4 className="bg-heightlight-1 w-fit rounded-[20px] px-10 py-2 text-white mx-auto text-bolder text-2xl">
           互動式網頁設計
         </h4>
+        <div className="w-full mt-10">
+          <JoinCard />
+        </div>
       </div>
-      <img className="absolute w-4/5 h-full" src={Icon.MAIN.StartIcon} alt="" />
       <img
-        className="absolute bottom-0 left-[15%] h-[27vw] z-10"
+        className="absolute w-full h-full"
+        src={Icon.MAIN.StartIcon}
+        alt=""
+      />
+      <img
+        className="absolute bottom-0 left-[15%] h-[25vw] z-10"
         src={Icon.CHARACTER.CharacterF2E}
         alt=""
       />
       <img
-        className="absolute bottom-0 left-[38%] h-[27vw] z-10"
+        className="absolute bottom-0 left-[40%] h-[25vw] z-10"
         src={Icon.CHARACTER.CharacterUI}
         alt=""
       />
       <img
-        className="absolute bottom-0 left-[60%] h-[24vw] z-10"
+        className="absolute bottom-0 left-[62%] h-[22vw] z-10"
         src={Icon.CHARACTER.CharacterTeam}
         alt=""
       />
@@ -161,11 +182,13 @@ function Content() {
 }
 
 function App() {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const parallax = useRef<IParallax>(null!)
   return (
     <div className="min-h-screen App bg-secondary-1">
       <Header />
       <OtherElement />
-      <Parallax pages={4}>
+      <Parallax pages={4} ref={parallax}>
         <ParallaxLayer>
           <Content />
         </ParallaxLayer>
