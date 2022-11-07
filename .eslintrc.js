@@ -40,6 +40,7 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 'warn',
     '@typescript-eslint/no-use-before-define': 'error',
     'no-console': 'off',
-    'import/no-unresolved': 'off'
+    'import/no-unresolved': 'off',
+    '@typescript-eslint/member-delimiter-style': 'off'
   }
 }

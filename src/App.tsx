@@ -1,8 +1,5 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { Icon } from '@/components'
-import { useSpring, animated } from '@react-spring/web'
-import { Parallax, ParallaxLayer } from '@react-spring/parallax'
-import type { IParallax } from '@react-spring/parallax'
 
 function Header() {
   const [icon, setIcon] = useState(Icon.UserDefaultIcon)
@@ -29,31 +26,20 @@ function Header() {
 
 function Menu() {
   const [open, setOpen] = useState(false)
-  const props = useSpring({ width: open ? 240 : 20 })
-  const props2 = useSpring({
-    transform: open ? 'translate(210px, 0px)' : 'translate(0px, 0px)'
-  })
   return (
     <div id="menu">
-      <animated.div
-        className="z-[99]"
-        style={{ position: 'fixed', height: '100%', ...props }}
-      >
-        <img
-          className="object-cover w-full h-full"
-          src={Icon.BG.BgMenuSideIcon}
-          alt=""
-        />
-      </animated.div>
-      <animated.div
-        className="fixed -translate-y-1/2 cursor-pointer left-3 top-1/2 z-[99]"
-        style={{
-          ...props2
-        }}
+      <img
+        className="object-cover w-[20px] h-screen fixed"
+        src={Icon.BG.BgMenuSideIcon}
+        alt=""
         onClick={() => setOpen((prev) => !prev)}
-      >
-        <img className="h-20 " src={Icon.OpenMenuIcon} alt="" />
-      </animated.div>
+      />
+      <img
+        className="h-20 fixed -translate-y-1/2 cursor-pointer left-3 top-1/2 z-[99]"
+        src={Icon.OpenMenuIcon}
+        alt=""
+        onClick={() => setOpen((prev) => !prev)}
+      />
     </div>
   )
 }
@@ -108,9 +94,9 @@ function OtherElement() {
     <div className="z-10">
       <Menu />
       <Join />
-      <TrafficLight />
 
       <Icon.MapSVG className="fixed bottom-0 left-8 w-[225px]" />
+      <TrafficLight />
 
       {/* Cloud Left */}
       <img
@@ -128,13 +114,17 @@ function OtherElement() {
   )
 }
 
-function JoinCard() {
+type JoinCardProps = {
+  title: string
+  count: number | string
+}
+function JoinCard({ title, count }: JoinCardProps) {
   return (
-    <div className="flex flex-col items-center justify-center gap-1 font-bold text-primary-1">
-      <h4>前端工程師</h4>
-      <span className="flex items-center justify-center px-3 py-1 text-white rounded-full w-fit bg-primary-1">
-        <Icon.UserSVG className="w-4 h-4 stroke-white" />
-        920
+    <div className="flex flex-col items-center justify-center gap-2 font-bold text-primary-1">
+      <h4 className="text-xl">{title}</h4>
+      <span className="flex items-center justify-center gap-3 px-6 py-1 text-xl text-white rounded-full w-fit bg-primary-1">
+        <Icon.UserSVG className="w-5 h-5 stroke-white" />
+        {count}
       </span>
     </div>
   )
@@ -143,13 +133,15 @@ function JoinCard() {
 function Content() {
   return (
     <div className="relative flex justify-center w-3/4 h-screen mx-auto">
-      <div className="relative z-10 w-[35.41vw] mx-auto text-center h-fit top-[1.2vw]">
-        <img className="" src={Icon.LogoTextIcon} alt="" />
-        <h4 className="bg-heightlight-1 w-fit rounded-[20px] px-10 py-2 text-white mx-auto text-bolder text-2xl">
+      <div className="relative z-10 text-center  top-[1.5vw]">
+        <img className="w-[35.41vw] mx-auto" src={Icon.LogoTextIcon} alt="" />
+        <h4 className="px-10 py-2 mx-auto text-2xl text-white rounded-full bg-heightlight-1 w-fit text-bolder">
           互動式網頁設計
         </h4>
-        <div className="w-full mt-10">
-          <JoinCard />
+        <div className="flex justify-between w-[45vw] mt-10">
+          <JoinCard title="前端工程師" count="920" />
+          <JoinCard title="UI設計師" count="110" />
+          <JoinCard title="團體組" count="41" />
         </div>
       </div>
       <img
@@ -182,17 +174,11 @@ function Content() {
 }
 
 function App() {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const parallax = useRef<IParallax>(null!)
   return (
     <div className="min-h-screen App bg-secondary-1">
       <Header />
       <OtherElement />
-      <Parallax pages={4} ref={parallax}>
-        <ParallaxLayer>
-          <Content />
-        </ParallaxLayer>
-      </Parallax>
+      <Content />
     </div>
   )
 }
