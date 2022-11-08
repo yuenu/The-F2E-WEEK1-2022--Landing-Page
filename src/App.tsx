@@ -1,8 +1,14 @@
-import { useState } from 'react'
+import { useState, useRef, useLayoutEffect, ReactNode } from 'react'
 import { Icon } from '@/components'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
+const speed = 100
 
 function Header() {
   const [icon, setIcon] = useState(Icon.UserDefaultIcon)
+
   return (
     <header className="fixed top-0 left-0 w-full z-[100]">
       <div className="flex justify-between my-5 ml-10 mr-5">
@@ -65,21 +71,44 @@ function Join() {
 }
 
 function TrafficLight() {
+  const boxRef = useRef<HTMLDivElement | null>(null)
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const scene1 = gsap.timeline()
+      ScrollTrigger.create({
+        animation: scene1,
+        trigger: '#green-light',
+        start: 'top top',
+        end: '45% 100%',
+        scrub: 3
+      })
+      // all your animations go in here...
+      scene1.to('#screen2', { duration: 1, x: 100, opacity: 0.5 })
+    }, boxRef) // <- scopes all selector text to the root element
+
+    return () => ctx.revert()
+  }, [])
   return (
-    <div className="fixed right-0 text-center -translate-y-1/2 top-1/2">
+    <div
+      className="fixed right-0 text-center -translate-y-1/2 top-1/2"
+      ref={boxRef}
+    >
       <h3 className="text-xl font-bold tracking-[0.3rem] text-red-500 uppercase">
         Ready?
       </h3>
       <div className="relative">
         <img
+          id="green-light"
           src={Icon.MAIN.Ready3}
           className="absolute h-[2.15rem] top-6 left-[1.65rem] z-10"
         />
         <img
+          id="yellow-light"
           src={Icon.MAIN.Ready2}
           className="absolute h-[2.15rem] top-6 left-[4.6rem] z-10"
         />
         <img
+          id="red-light"
           src={Icon.MAIN.Ready1}
           className="absolute h-[2.15rem] top-6 right-12 z-10"
         />
@@ -96,20 +125,7 @@ function OtherElement() {
       <Join />
 
       <Icon.MapSVG className="fixed bottom-0 left-8 w-[225px]" />
-      <TrafficLight />
-
-      {/* Cloud Left */}
-      <img
-        className="absolute w-[20%] left-52 top-[35%]"
-        src={Icon.BG.BgDecoration1}
-        alt=""
-      />
-      {/* Cloud Right */}
-      <img
-        className="absolute w-[25%] right-52 top-[35%]"
-        src={Icon.BG.BgDecoration5}
-        alt=""
-      />
+      {/* <TrafficLight /> */}
     </div>
   )
 }
@@ -173,12 +189,125 @@ function Content() {
   )
 }
 
-function App() {
+type ScreenProps = {
+  className?: string
+  id?: string
+  children?: ReactNode
+}
+
+function Screen({ className, id, children }: ScreenProps) {
   return (
-    <div className="min-h-screen App bg-secondary-1">
+    <div id={id} className={`min-h-screen h-[100vh] ${className}`}>
+      {children}
+    </div>
+  )
+}
+
+function App() {
+  const screenRef = useRef<HTMLDivElement | null>(null)
+  useLayoutEffect(() => {
+    /**
+     * Start Animation
+     */
+    const ctx = gsap.context(() => {
+      const scene1 = gsap.timeline()
+      ScrollTrigger.create({
+        animation: scene1,
+        trigger: '#screen1',
+        start: '30px',
+        scrub: 2,
+        pin: true,
+        markers: true
+      })
+      // 紅綠燈變紅、雲朵變小
+      scene1.to('#yellow-light', { duration: 0.2, opacity: 0 }, 0)
+      scene1.to('#green-light', { duration: 0.2, opacity: 0 }, 0)
+      scene1.to('#traffic-heading', { duration: 0.2, opacity: 0 }, 0)
+      scene1.to('#cloud-left', { scale: 0.3, x: 200 }, 0)
+      scene1.to('#cloud-right', { scale: 0.3, x: -100 }, 0)
+
+      gsap.to('#screen1', {
+        scrollTrigger: {
+          trigger: '.box', //觸發得物件
+          start: 'top top', // (物件開始位置, 卷軸開始位置) top center bottom px
+          end: '+=300', //(物件結束位置, 卷軸結束位置) , 也可以設卷軸捲動多少結束動畫(+=300)
+          pin: true, // 物件執行完動畫會跟著卷軸走，類似 fixed-top
+          scrub: true, // 物件動畫根據卷軸捲動程度跑
+          toggleClass: 'active', // 增加移除的class，class名稱須為字串
+          markers: true // 顯示標記
+        }
+      })
+    }, screenRef) // <- scopes all selector text to the root element
+
+    return () => ctx.revert()
+  }, [])
+
+  return (
+    <div className="App bg-secondary-1" ref={screenRef}>
       <Header />
       <OtherElement />
-      <Content />
+
+      <Screen id="screen1">
+        <Content />
+
+        {/* TrafficLight START */}
+        <div
+          id="traffic"
+          className="fixed right-0 text-center -translate-y-1/2 top-1/2"
+        >
+          <h3
+            className="text-xl font-bold tracking-[0.3rem] text-red-500 uppercase"
+            id="traffic-heading"
+          >
+            Ready?
+          </h3>
+          <div className="relative">
+            <img
+              id="red-light"
+              src={Icon.MAIN.Ready3}
+              className="absolute h-[2.15rem] top-6 left-[1.65rem] z-10"
+            />
+            <img
+              id="yellow-light"
+              src={Icon.MAIN.Ready2}
+              className="absolute h-[2.15rem] top-6 left-[4.6rem] z-10"
+            />
+            <img
+              id="green-light"
+              src={Icon.MAIN.Ready1}
+              className="absolute h-[2.15rem] top-6 right-12 z-10"
+            />
+            <img
+              src={Icon.MAIN.ReadyFrameIcon}
+              className="relative z-20 h-20"
+            />
+          </div>
+        </div>
+        {/* TrafficLight END */}
+
+        {/* Cloud Left START */}
+        <img
+          id="cloud-left"
+          className="absolute w-[20%] left-52 top-[35%]"
+          src={Icon.BG.BgDecoration1}
+          alt=""
+        />
+        {/* Cloud Left END */}
+
+        {/* Cloud Right START */}
+        <img
+          id="cloud-right"
+          className="absolute w-[25%] right-52 top-[35%]"
+          src={Icon.BG.BgDecoration5}
+          alt=""
+        />
+        {/* Cloud Right END */}
+      </Screen>
+      <Screen id="screen2" />
+      <Screen id="screen3" />
+      <Screen id="screen4" />
+      <Screen id="screen5" />
+      <Screen id="screen6" />
     </div>
   )
 }

@@ -7,5 +7,6 @@
 
 
 body {
+  overflow-x: hidden;
   font-family: 'Noto Sans TC', sans-serif;  
 }
