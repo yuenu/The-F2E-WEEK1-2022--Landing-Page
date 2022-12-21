@@ -21,6 +21,7 @@ import BgDecoration5 from '@/assets/images/bg/bg_decorate_05.png'
 import BgMenuSideIcon from '@/assets/images/bg/bg_menuSide.png'
 import StartIcon from '@/assets/images/main/start.png'
 import RoadIcon from '@/assets/images/main/road.png'
+import LoadingIcon from '@/assets/images/loading.png'
 
 // character
 import CharacterF2E from '@/assets/images/character/character_f2e.gif'
@@ -65,5 +66,6 @@ export const Icon = {
   JoinActiveIcon,
   BG,
   MAIN,
-  CHARACTER
+  CHARACTER,
+  LoadingIcon
 }
