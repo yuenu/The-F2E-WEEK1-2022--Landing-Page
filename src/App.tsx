@@ -1,14 +1,38 @@
-import { useState, useRef, useLayoutEffect } from 'react'
-import { Icon } from '@/components'
+import { useRef, useLayoutEffect, useState } from 'react'
+import { Icon, SVG, SideBar } from '@/components'
 import { gsap } from 'gsap'
-import { useLoading } from './gsap'
+import { startAnimation } from './gsap'
+
+const participantsData = [
+  {
+    id: 'Frontend Engineer',
+    label: '前端工程師',
+    number: 920,
+    icon: Icon.CharacterF2E
+  },
+  {
+    id: 'User Interface Designer',
+    label: 'UI設計師',
+    number: 110,
+    icon: Icon.CharacterUI
+  },
+  {
+    id: 'Frontend Engineer & User Interface Designer',
+    label: '團體組',
+    number: 41,
+    icon: Icon.CharacterTeam
+  }
+]
 
 function App() {
+  const [userIcon, setUserIcon] = useState(Icon.UserDefault)
+  const [joinIcon, setJoinIcon] = useState(Icon.Join)
+
   const screenRef = useRef<HTMLDivElement | null>(null)
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      useLoading()
+      startAnimation()
     }, screenRef) // <- scopes all selector text to the root element
 
     return () => ctx.revert()
@@ -19,15 +43,128 @@ function App() {
       className="w-full min-h-screen overflow-x-hidden App bg-secondary-1"
       ref={screenRef}
     >
+      <SideBar />
       {/* Loading */}
       <div className="fixed flex flex-col items-center justify-center w-full h-screen progress__container">
         <img
-          src={Icon.LogoIcon}
+          src={Icon.LoadingLogo}
           alt="Loading"
           className="w-[200px] -translate-y-[50px]"
         />
         <div className="w-[80%] md:w-[40%] xl:w-[30%] py-[5px] md:py-[10px] relative border-primary-1 border-[2px] rounded-2xl -translate-y-[50px] overflow-hidden">
           <div className="absolute top-0 left-0 w-0 h-full bg-primary-1 progress__bar"></div>
+        </div>
+      </div>
+
+      <div className="hidden opacity-0 animate__container xl:block">
+        {/* Map */}
+        <SVG.MapSVG className="fixed bottom-5 left-2 map-1" />
+
+        {/* Side Bar */}
+
+        {/* User Button */}
+        <a
+          rel="noreferrer"
+          href="https://2022.thef2e.com/login"
+          target="_blank"
+          className="fixed top-[30px] right-[20px]"
+          onMouseEnter={() => setUserIcon(Icon.UserHover)}
+          onMouseLeave={() => setUserIcon(Icon.UserDefault)}
+          onMouseDown={() => setUserIcon(Icon.UserActive)}
+        >
+          <img src={userIcon} alt="user" width="80" height="80" />
+        </a>
+        {/* Join Button */}
+        <a
+          rel="noreferrer"
+          target="_blank"
+          href="https://2022.thef2e.com/"
+          className="group fixed bottom-5 right-5 w-[60px] z-[10]"
+          onMouseEnter={() => setJoinIcon(Icon.JoinActive)}
+          onMouseLeave={() => setJoinIcon(Icon.Join)}
+        >
+          <h3 className="w-full font-bold text-center duration-100 ease-in-out text-primary-1 group-hover:translate-y-3">
+            JOIN
+          </h3>
+          <img
+            src={Icon.JoinHand}
+            alt=""
+            className="w-[40px] mx-auto group-hover:translate-y-3 ease-in-out duration-100"
+          />
+          <img src={joinIcon} alt="join" className="w-full" />
+        </a>
+
+        {/* Triffic Light */}
+        <img
+          src={Icon.StateReady}
+          alt="Ready?"
+          className="fixed top-1/2 right-0 -translate-y-1/2 w-[275px] status__ready-1"
+        />
+        <img
+          src={Icon.StateReady1}
+          alt="Step1"
+          className="fixed right-0 hidden -translate-y-1/2 top-1/2 w-[275px] status__ready-2"
+        />
+        <img
+          src={Icon.StateReady2}
+          alt="Step2"
+          className="fixed right-0 hidden -translate-y-1/2 top-1/2 w-[275px] status__ready-3"
+        />
+        <img
+          src={Icon.StateReady3}
+          alt="GO!!!"
+          className="fixed right-0 hidden -translate-y-1/2 top-1/2 w-[275px] status__ready-4"
+        />
+
+        {/* Main Content */}
+        <div className="w-full h-screen content">
+          {/* Logo */}
+          <img
+            src={Icon.Logo}
+            alt="4th the f2e"
+            className="fixed w-1/6 max-w-[200px] top-2 left-2"
+          />
+          {/* Logo Text */}
+          <img
+            src={Icon.LogoText}
+            alt="4th the f2e"
+            className="fixed w-1/2 max-w-[680px] top-[5%] left-1/2 -translate-x-1/2 z-[2]"
+          />
+          {/* Track */}
+          <img
+            src={Icon.Road}
+            alt=""
+            className="fixed bottom-0 w-[70vw] left-1/2 -translate-x-1/2 z-[2]"
+          />
+          <img
+            src={Icon.Start}
+            alt=""
+            className="pole h-full max-w-[70%] w-full fixed bottom-0 left-1/2 -translate-x-1/2 z-[1]"
+          />
+          {/* Characters */}
+          <div className="fixed flex bottom-2 left-1/2 -translate-x-1/2 z-[4] w-full justify-center gap-[4vw]">
+            {participantsData.map((item) => (
+              <div key={item.id} className="flex flex-col justify-between">
+                <div className="flex flex-col items-center gap-2 text-2xl">
+                  <h4 className="font-bold tracking-widest text-primary-1">
+                    {item.label}
+                  </h4>
+                  <div className="flex justify-center text-xl w-[140px] h-[38px] gap-2 text-white rounded-full bg-primary-1 items-center">
+                    <SVG.UserSVG
+                      className="fill-white w-[22px] h-[22px]"
+                      title="The number of participants"
+                    />
+                    {item.number}
+                  </div>
+                </div>
+                <img
+                  src={item.icon}
+                  alt="Frontend Engineer"
+                  className="w-[280px]"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

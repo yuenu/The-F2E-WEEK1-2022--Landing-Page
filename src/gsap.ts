@@ -3,7 +3,7 @@ import { ScrollTrigger, ScrollToPlugin } from 'gsap/all'
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
 
-export const useLoading = () => {
+const startLoading = () => {
   gsap.to('.progress__bar', {
     width: '100%',
     ease: 'power3.out',
@@ -15,4 +15,19 @@ export const useLoading = () => {
     duration: 0.5,
     delay: 2.5
   })
+}
+
+const initAnimation = () => {
+  gsap.to('.animate__container', {
+    opacity: '1',
+    duration: '.5',
+    ease: 'power3.out'
+  })
+}
+
+export const startAnimation = () => {
+  startLoading()
+  setTimeout(() => {
+    initAnimation()
+  }, 2500)
 }
