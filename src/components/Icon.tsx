@@ -19,11 +19,11 @@ import StateReady3 from '@/assets/images/StateReady-3.png'
 import JoinHand from '@/assets/images/btn/btn_joinHand.png'
 import Join from '@/assets/images/btn/btn_join.png'
 import JoinActive from '@/assets/images/btn/btn_join_h.png'
-import BgDecoration1 from '@/assets/images/bg/bg_decorate_01.png'
 import BgDecoration2 from '@/assets/images/bg/bg_decorate_02.png'
 import BgDecoration3 from '@/assets/images/bg/bg_decorate_03.png'
 import BgDecoration4 from '@/assets/images/bg/bg_decorate_04.png'
-import BgDecoration5 from '@/assets/images/bg/bg_decorate_05.png'
+import Cloud1 from '@/assets/images/bg/cloud-1.png'
+import Cloud2 from '@/assets/images/bg/cloud-2.png'
 import Start from '@/assets/images/main/start.png'
 import Road from '@/assets/images/main/road.png'
 import LoadingLogo from '@/assets/images/loading.png'
@@ -40,6 +40,8 @@ export const Icon = {
   Ready1,
   Ready2,
   Ready3,
+  Cloud1,
+  Cloud2,
   JoinActive,
   JoinHand,
   Start,
