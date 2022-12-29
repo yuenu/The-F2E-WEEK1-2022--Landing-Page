@@ -57,7 +57,7 @@ function App() {
 
       <div className="hidden opacity-0 animate__container xl:block">
         {/* Map */}
-        <SVG.MapSVG className="fixed bottom-5 left-2 map-1" />
+        <SVG.MapSVG className="fixed scale-0 map bottom-5 left-2" />
 
         {/* Side Bar */}
         <SideBar />
@@ -139,7 +139,7 @@ function App() {
           <img
             src={Icon.Logo}
             alt="4th the f2e"
-            className="fixed w-1/6 max-w-[200px] top-2 left-2"
+            className="fixed w-1/6 max-w-[200px] top-2 left-2 opacity-0 main-logo"
           />
           {/* Logo Text */}
           <img
@@ -151,7 +151,7 @@ function App() {
           <img
             src={Icon.Road}
             alt=""
-            className="fixed bottom-0 w-[70vw] left-1/2 -translate-x-1/2 z-[2]"
+            className="fixed bottom-0 w-[70vw] left-1/2 -translate-x-1/2 z-[2] road"
           />
           <img
             src={Icon.Start}
@@ -159,13 +159,13 @@ function App() {
             className="pole h-full max-w-[70%] w-full fixed bottom-0 left-1/2 -translate-x-1/2 z-[1]"
           />
           {/* Characters */}
-          <div className="fixed flex bottom-2 left-1/2 -translate-x-1/2 z-[4] w-full justify-center gap-[4vw]">
-            {participantsData.map((item) => (
+          <div className="fixed flex bottom-2 left-1/2 -translate-x-1/2 z-[4] w-full justify-center gap-[4vw] runner__outside">
+            {participantsData.map((item, index) => (
               <div
                 key={item.id}
                 className="flex flex-col justify-between scale-0 runner__container"
               >
-                <div className="flex flex-col items-center gap-2 text-2xl">
+                <div className="flex flex-col items-center gap-2 text-2xl runner__title">
                   <h4 className="font-bold tracking-widest text-primary-1">
                     {item.label}
                   </h4>
@@ -180,7 +180,7 @@ function App() {
                 <img
                   src={item.icon}
                   alt="Frontend Engineer"
-                  className="w-[280px]"
+                  className={`w-[280px] runner runner-${index}`}
                 />
               </div>
             ))}
