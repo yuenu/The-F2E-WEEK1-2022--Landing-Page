@@ -14,3 +14,42 @@ body {
 /* body::-webkit-scrollbar {
   display: none;
 } */
+
+::-webkit-scrollbar {
+  padding-left: 1px;
+  background-color: #f1f1f1;
+  overflow: visible;
+  width: 6px;
+  height: 6px;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.1);
+  background-clip: padding-box;
+  border-left-width: 2px;
+  min-height: 10px;
+  box-shadow: inset 1px 1px 0 rgba(0, 0, 0, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.07);
+}
+::-webkit-scrollbar-thumb:vertical:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+::-webkit-scrollbar-thumb:vertical:active {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+::-webkit-scrollbar-button {
+  height: 0;
+  width: 0;
+}
+::-webkit-scrollbar-track {
+  background-clip: padding-box;
+  border: solid transparent;
+  border-width: 0 0 0 2px;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+::-webkit-scrollbar-track-piece {
+  margin: 10px 0;
+  border-radius: 4px;
+}
