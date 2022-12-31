@@ -1,5 +1,7 @@
 import { ReactComponent as MapSVG } from '@/assets/images/main/map_finish.svg'
 import { ReactComponent as UserSVG } from '@/assets/images/ic/ic_users.svg'
+import { ReactComponent as Talking } from '@/assets/images/header/talking.svg'
+
 import UserDefault from '@/assets/images/btn/btn_user.png'
 import UserHover from '@/assets/images/btn/btn_user_h.png'
 import UserActive from '@/assets/images/btn/btn_user_p.png'
@@ -27,6 +29,12 @@ import Cloud2 from '@/assets/images/bg/cloud-2.png'
 import Start from '@/assets/images/main/start.png'
 import Road from '@/assets/images/main/road.png'
 import LoadingLogo from '@/assets/images/loading.png'
+import Tree1 from '@/assets/images/bg/bg_decorate_09.png'
+import Tree2 from '@/assets/images/bg/bg_decorate_10.png'
+
+import Question1 from '@/assets/images/main/question_1.png'
+import Question2 from '@/assets/images/main/question_2.png'
+import Question3 from '@/assets/images/main/question_3.png'
 
 // character
 import CharacterF2E from '@/assets/images/character/character_f2e.gif'
@@ -57,10 +65,16 @@ export const Icon = {
   StateReady,
   StateReady1,
   StateReady2,
-  StateReady3
+  StateReady3,
+  Question1,
+  Question2,
+  Question3,
+  Tree1,
+  Tree2
 }
 
 export const SVG = {
   MapSVG,
-  UserSVG
+  UserSVG,
+  Talking
 }

@@ -2,7 +2,6 @@ import { gsap } from 'gsap'
 import { ScrollTrigger, ScrollToPlugin } from 'gsap/all'
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
-const speed = 100
 
 const startLoading = () => {
   gsap.to('.progress__bar', {
@@ -98,7 +97,7 @@ const initTimeLine = () => {
     scrollTrigger: {
       trigger: '.content',
       start: 'top top',
-      end: '+=900px',
+      end: '+=1200px',
       pin: true,
       scrub: 0.5
     }
@@ -123,12 +122,35 @@ const initTimeLine = () => {
     .to('.second__title', { opacity: '1' }, '<')
     .to('.main-logo', { opacity: '1' })
     .to('.logo-text', { opacity: '0' }, '<')
-    .to('.road', { width: '45%' })
+    .to('.road', { width: '45%', transform: 'translate(-50%, 0)' })
     .to('.pole', { display: 'none' }, '<')
     .to('.runner', { scale: '0.7', margin: '0 0 -25% 0' }, '<')
     .to('.runner__outside', { width: '42%', gap: '0', margin: '0' }, '<')
-  // .to('.runner-1', { y: '20px' }, '<')
-  // .to('.runner-2', { y: '20px' }, '<')
+    .to('.talking__1', { opacity: '1' })
+    .to('.tree-left', { scale: '1', ease: 'expo' }, '<')
+    .to('.tree-right', { scale: '1', ease: 'expo' }, '<')
+    .to('.step__2-1', { opacity: '1', left: '0', duration: 1.2 }, '<')
+    .to('.tree-left', { bottom: '20', left: '32%' }, '<')
+    .to('.tree-right', { bottom: '20', right: '32%' }, '<')
+    .to('.step__2-2', { opacity: '1', duration: 1.2 })
+    .to('.tree-left', { bottom: '25', left: '38%', scale: '0.8' }, '<')
+    .to('.tree-right', { bottom: '25', right: '38%', scale: '0.8' }, '<')
+    .to('.step__2-3', { opacity: '1', right: '0', duration: 1.2 })
+    .to(
+      '.tree-left',
+      { bottom: '33', left: '45%', scale: '0.5', opacity: '0' },
+      '<'
+    )
+    .to(
+      '.tree-right',
+      {
+        bottom: '33',
+        right: '45%',
+        scale: '0.5',
+        opacity: '0'
+      },
+      '<'
+    )
 }
 
 export const startAnimation = () => {
