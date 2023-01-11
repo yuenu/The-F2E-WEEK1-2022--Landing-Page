@@ -1,6 +1,8 @@
 import { ReactComponent as MapSVG } from '@/assets/images/main/map_finish.svg'
 import { ReactComponent as UserSVG } from '@/assets/images/ic/ic_users.svg'
-import { ReactComponent as Talking } from '@/assets/images/header/talking.svg'
+import { ReactComponent as Talking1 } from '@/assets/images/header/talking1.svg'
+import { ReactComponent as Talking2 } from '@/assets/images/header/talking2.svg'
+import { ReactComponent as Talking3 } from '@/assets/images/header/talking3.svg'
 
 import UserDefault from '@/assets/images/btn/btn_user.png'
 import UserHover from '@/assets/images/btn/btn_user_h.png'
@@ -76,5 +78,7 @@ export const Icon = {
 export const SVG = {
   MapSVG,
   UserSVG,
-  Talking
+  Talking1,
+  Talking2,
+  Talking3
 }

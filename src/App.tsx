@@ -75,7 +75,7 @@ function App() {
         />
 
         {/* Title */}
-        <h1 className="title text-[32px] text-white font-[700] tracking-[0.05rem] leading--[125%] fixed left-1/2 -translate-x-1/2 top-[30%] z-[3] bg-[#FF5136] px-[40px] py-[8px] rounded-full">
+        <h1 className="title text-[1.4vw] text-white font-[700] tracking-[0.05rem] leading--[125%] fixed left-1/2 -translate-x-1/2 top-[30%] z-[3] bg-[#FF5136] px-[3vw] py-[0.2vw] rounded-full">
           互動式網頁設計
         </h1>
 
@@ -145,7 +145,7 @@ function App() {
           <img
             src={Icon.LogoText}
             alt="4th the f2e"
-            className="logo-text fixed w-1/2 max-w-[680px] top-[5%] left-1/2 -translate-x-1/2 z-[2]"
+            className="logo-text fixed max-w-[680px] w-[40vw] top-[5%] left-1/2 -translate-x-1/2 z-[2]"
           />
           {/* Track */}
           <img
@@ -170,21 +170,47 @@ function App() {
             alt="tree-right"
             className="fixed bottom-0 right-[26.5%] w-[100px] tree-right scale-0"
           />
-          <SVG.Talking className="talking__1 fixed top-[6%] left-1/2 -translate-x-1/2 opacity-0" />
+          {/* Step 2 */}
+          <SVG.Talking1 className="talking__1 fixed top-[6%] left-1/2 -translate-x-1/2 opacity-0 max-w-[50vw]" />
           <div className="w-[70%] fixed top-[28%] left-1/2  -translate-x-1/2 flex gap-10 items-center">
-            <div className="flex-1 text-[22px] font-bold text-[#FF5136] text-center flex flex-col gap-7 step__2-1 opacity-0 relative -left-[50px]">
+            <div className="flex-1 text-[22px] font-bold text-heightlight-1 text-center flex flex-col gap-7 step__2-1 opacity-0 relative -left-[50px]">
               <h3>羨慕別人的酷酷網頁動畫？</h3>
               <img src={Icon.Question1} alt="" />
             </div>
-            <div className="flex-1 text-[22px] font-bold text-[#FF5136] text-center flex flex-col gap-7 step__2-2 opacity-0 ">
+            <div className="flex-1 text-[22px] font-bold text-heightlight-1 text-center flex flex-col gap-7 step__2-2 opacity-0 ">
               <h3>滿足不了同事的許願？</h3>
               <img src={Icon.Question2} alt="" />
             </div>
-            <div className="flex-1 text-[22px] font-bold text-[#FF5136] text-center flex flex-col gap-7 step__2-3 opacity-0 relative -right-[50px]">
+            <div className="flex-1 text-[22px] font-bold text-heightlight-1 text-center flex flex-col gap-7 step__2-3 opacity-0 relative -right-[50px]">
               <h3>動畫技能樹太雜無從下手？</h3>
               <img src={Icon.Question3} alt="" />
             </div>
           </div>
+          {/* Step 2 */}
+          <div className="talking__2 fixed top-[6%] left-1/2 -translate-x-1/2 max-w-[50vw] text-secondary-2 opacity-0">
+            <SVG.Talking2 />
+            <p className="text-lg font-bold text-center">
+              以下兩個角色進行攜手合作
+            </p>
+          </div>
+          <div className="w-[52%] ml-[1%] fixed top-[35%] left-1/2  -translate-x-1/2 flex items-center justify-between topics opacity-0 text-xl">
+            <div className="flex flex-col items-center gap-4 topic">
+              <img src={Icon.Join} alt="" className="w-20" />
+              <h3 className="font-bold text-primary-1">前端工程師</h3>
+            </div>
+            <div className="flex flex-col items-center gap-4 topic">
+              <img src={Icon.Join} alt="" className="w-20" />
+              <h3 className="font-bold text-primary-1">ＵＩ設計師</h3>
+            </div>
+            <div className="flex flex-col items-center gap-4 topic">
+              <img src={Icon.Join} alt="" className="w-20" />
+              <h3 className="font-bold text-primary-1">團體組(UI+前端)</h3>
+            </div>
+          </div>
+
+          {/* Step 3 */}
+          {/* <SVG.Talking3 className="talking__1 fixed top-[6%] left-1/2 -translate-x-1/2 opacity-0 max-w-[50vw]" /> */}
+
           {/* Characters */}
           <div className="fixed flex bottom-2 left-1/2 -translate-x-1/2 z-[4] w-full justify-center gap-[4vw] runner__outside">
             {participantsData.map((item, index) => (
@@ -207,7 +233,7 @@ function App() {
                 <img
                   src={item.icon}
                   alt="Frontend Engineer"
-                  className={`w-[280px] runner runner-${index}`}
+                  className={`h-[50vh] max-w-[280px] runner runner-${index}`}
                 />
               </div>
             ))}

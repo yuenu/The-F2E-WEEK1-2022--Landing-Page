@@ -122,10 +122,14 @@ const initTimeLine = () => {
     .to('.second__title', { opacity: '1' }, '<')
     .to('.main-logo', { opacity: '1' })
     .to('.logo-text', { opacity: '0' }, '<')
-    .to('.road', { width: '45%', transform: 'translate(-50%, 0)' })
+    .to('.road', { width: '45vw' })
     .to('.pole', { display: 'none' }, '<')
-    .to('.runner', { scale: '0.7', margin: '0 0 -25% 0' }, '<')
-    .to('.runner__outside', { width: '42%', gap: '0', margin: '0' }, '<')
+    .to('.runner', { scale: '0.7', margin: '0 0 -25% 0', duration: 1 }, '<')
+    .to(
+      '.runner__outside',
+      { width: '42%', gap: '0', margin: '0', duration: 1 },
+      '<'
+    )
     .to('.talking__1', { opacity: '1' })
     .to('.tree-left', { scale: '1', ease: 'expo' }, '<')
     .to('.tree-right', { scale: '1', ease: 'expo' }, '<')
@@ -147,10 +151,20 @@ const initTimeLine = () => {
         bottom: '33',
         right: '45%',
         scale: '0.5',
-        opacity: '0'
+        opacity: '0',
+        duration: 1
       },
       '<'
     )
+    .to('.runner', { scale: '1', margin: '0 0 0 0' })
+    .to('.road', { width: '70vw' })
+    .to('.runner__outside', { width: '100%', gap: '4vw', margin: '0' }, '<')
+    .to('.talking__1', { opacity: '0' }, '<')
+    .to('.step__2-1', { opacity: '0' }, '<')
+    .to('.step__2-2', { opacity: '0' }, '<')
+    .to('.step__2-3', { opacity: '0' }, '<')
+    .to('.talking__1', { opacity: '1' })
+    .to('.topics', { opacity: 1 })
 }
 
 export const startAnimation = () => {
