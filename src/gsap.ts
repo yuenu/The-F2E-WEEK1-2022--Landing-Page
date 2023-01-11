@@ -157,20 +157,29 @@ const initTimeLine = () => {
       '<'
     )
     .to('.runner', { scale: '1', margin: '0 0 0 0' })
-    .to('.road', { width: '70vw' })
-    .to('.runner__outside', { width: '100%', gap: '4vw', margin: '0' }, '<')
     .to('.talking__1', { opacity: '0' }, '<')
     .to('.step__2-1', { opacity: '0' }, '<')
     .to('.step__2-2', { opacity: '0' }, '<')
     .to('.step__2-3', { opacity: '0' }, '<')
-    .to('.talking__1', { opacity: '1' })
-    .to('.topics', { opacity: 1 })
+    .to('.road', { width: '70vw', duration: 2 })
+    .to('.runner__outside', { width: '100%', gap: '4vw', margin: '0' }, '<')
+    .to('.talking__2', { opacity: '1' }, '<')
+    .to('.topics', { opacity: 1, duration: 2 })
+    .to('.talking__2', { opacity: 0, duration: 1 })
+    .to('.step3', { opacity: 0, duration: 1 })
+    .to('.runner', { scale: '0.7', margin: '0 0 -25% 0', duration: 1 }, '<')
+    .to(
+      '.runner__outside',
+      { width: '42%', gap: '0', margin: '0', duration: 1 },
+      '<'
+    )
+    .to('.talking__3', { opacity: 1 }, '<')
 }
 
 export const startAnimation = () => {
-  startLoading()
-  setTimeout(() => {
-    initAnimation()
-    initTimeLine()
-  }, 2500)
+  // startLoading()
+  // setTimeout(() => {
+  //   initAnimation()
+  //   initTimeLine()
+  // }, 2500)
 }

@@ -43,6 +43,11 @@ import CharacterF2E from '@/assets/images/character/character_f2e.gif'
 import CharacterTeam from '@/assets/images/character/character_team.gif'
 import CharacterUI from '@/assets/images/character/character_ui.gif'
 
+// Week
+import Week1 from '@/assets/images/main/week_1.png'
+import Week2 from '@/assets/images/main/week_2.png'
+import Week3 from '@/assets/images/main/week_3.png'
+
 export const Icon = {
   Road,
   Logo,
@@ -72,7 +77,10 @@ export const Icon = {
   Question2,
   Question3,
   Tree1,
-  Tree2
+  Tree2,
+  Week1,
+  Week2,
+  Week3
 }
 
 export const SVG = {
